@@ -1,14 +1,13 @@
 import random
 from typing import List
 
-
 class Environment:
     def __init__(self):
         self.steps_left = 10
-
+    
     def get_observation(self) -> List[float]:
         return [0.0, 0.0, 0.0]
-
+    
     def get_actions(self) -> List[int]:
         return [0, 1]
 
@@ -17,7 +16,7 @@ class Environment:
 
     def action(self, action: int) -> float:
         if self.is_done():
-            raise Exception("Game is over")
+            raise Exception("Game is done")
         self.steps_left -= 1
         return random.random()
 
@@ -25,13 +24,13 @@ class Environment:
 class Agent:
     def __init__(self):
         self.total_reward = 0.0
-
+    
     def step(self, env: Environment):
         current_obs = env.get_observation()
         actions = env.get_actions()
         reward = env.action(random.choice(actions))
         self.total_reward += reward
-
+    
 
 if __name__ == "__main__":
     env = Environment()
@@ -39,5 +38,5 @@ if __name__ == "__main__":
 
     while not env.is_done():
         agent.step(env)
-
+    
     print("Total reward got: %.4f" % agent.total_reward)
