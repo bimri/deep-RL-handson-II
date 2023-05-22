@@ -7,10 +7,16 @@ class OurModule(nn.Module):
         self.pipe = nn.Sequential(
             nn.Linear(num_inputs, 5),
             nn.ReLU(),
+<<<<<<< HEAD
+=======
+            nn.Linear(5, 20),
+            nn.ReLU(),
+>>>>>>> 333df38 (OurModule)
             nn.Linear(20, num_classes),
             nn.Dropout(p=dropout_prob),
             nn.Softmax(dim=1)
         )
+<<<<<<< HEAD
     
     def forward(self, x):
         return self.pipe(x)
@@ -20,6 +26,16 @@ if __name__ == '__main__':
     net = OurModule(num_inputs=2, num_classes=3)
     print(net)
     v = torch.FloatTensor([[2,3]])
+=======
+
+    def forward(self, x):
+        return self.pipe(x)
+
+if __name__ == "__main__":
+    net = OurModule(num_inputs=2, num_classes=3)
+    print(net)
+    v = torch.FloatTensor([[2, 3]])
+>>>>>>> 333df38 (OurModule)
     out = net(v)
     print(out)
     print("Cuda's availability is %s" % torch.cuda.is_available())
